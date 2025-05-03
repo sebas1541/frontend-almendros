@@ -18,11 +18,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.x'
-          cache: 'npm'
+          node-version: '20.x' # Usar Node.js 20.x para evitar problemas con Rollup
+          cache: 'npm' # Habilitamos el cache ya que ahora tienes package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci # Volvemos a usar npm ci para una instalación más rápida y consistente
 
       - name: Lint code
         run: npm run lint
@@ -30,6 +30,8 @@ jobs:
 
       - name: Build project
         run: npm run build
+        env:
+          ROLLUP_SKIP_NODEJS_NATIVE: true # Variable adicional para prevenir problemas con Rollup
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
