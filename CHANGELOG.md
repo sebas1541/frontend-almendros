@@ -2,6 +2,10 @@
 
 ## [unreleased]
 
+### Docs
+
+- Actualizar CHANGELOG.md para versión main
+
 ### Feat
 
 - Add the lock to npmrc
