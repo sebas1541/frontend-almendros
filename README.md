@@ -52,3 +52,44 @@ export default tseslint.config({
   },
 })
 ```
+
+### Getting Started
+
+1.  **Clone the repository and navigate to the project folder**
+    ```sh
+    git clone https://github.com/gabo8191/frontend-almendros.git
+    cd frontend-almendros
+    ```
+
+2.  **Install dependencies**
+    ```sh
+    npm install
+    ```
+
+3.  **Start the development server**
+    ```sh
+    npm run dev
+    ```
+    This will start the development server at `http://localhost:5173` (default) with hot module replacement enabled.
+
+4.  **Build for production**
+    ```sh
+    npm run build
+    ```
+    This will generate optimized production files in the `dist` directory.
+
+5.  **Preview the production build locally**
+    ```sh
+    npm run preview
+    ```
+
+### Additional Scripts
+
+You may also find these commands useful:
+
+```sh
+# Run linting
+npm run lint
+
+# Run type checking
+npm run typecheck
