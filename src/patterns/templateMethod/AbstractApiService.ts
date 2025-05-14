@@ -1,7 +1,7 @@
 import { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
 
 // Clase abstracta base para servicios API
-export abstract class AbstractApiService<PayloadType = unknown, ResponseType = unknown, ErrorType = AxiosError> {
+abstract class AbstractApiService<PayloadType = unknown, ResponseType = unknown, ErrorType = AxiosError> {
   constructor(protected readonly axiosInstance: AxiosInstance) {}
 
   // Método plantilla que define el esqueleto del proceso de llamada a la API
