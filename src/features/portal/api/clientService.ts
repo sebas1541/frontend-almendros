@@ -1,5 +1,13 @@
+import { ClientServiceAdapter } from '../../../patterns/adapter/ClientServiceAdapter';
 import api from '../../../utils/axiosConfig';
 
+// Crear una instancia del adaptador
+const clientServiceAdapter = new ClientServiceAdapter(api);
+
+// Exportar el servicio adaptado
+export const clientService = clientServiceAdapter;
+
+// Re-exportar los tipos existentes para mantener la compatibilidad
 export interface Client {
   id: number;
   name: string;
@@ -12,55 +20,3 @@ export interface Client {
   createdAt: string;
   updatedAt: string;
 }
-
-interface PaginatedResponse<T> {
-  message: string;
-  data: T[];
-  meta: {
-    total: number;
-    page: number;
-    limit: number;
-    totalPages: number;
-    hasNextPage: boolean;
-    hasPreviousPage: boolean;
-  };
-}
-
-interface CreateClientData {
-  name: string;
-  email: string;
-  phoneNumber: string;
-  address: string;
-  documentType: string;
-  documentNumber: string;
-}
-
-export const clientService = {
-  getClients: async (page = 1, limit = 10): Promise<PaginatedResponse<Client>> => {
-    const response = await api.get<PaginatedResponse<Client>>(`/clients?page=${page}&limit=${limit}`);
-    return response.data;
-  },
-
-  getClientById: async (id: number): Promise<Client> => {
-    const response = await api.get<{ message: string; client: Client }>(`/clients/${id}`);
-    return response.data.client;
-  },
-
-  createClient: async (data: CreateClientData): Promise<Client> => {
-    const response = await api.post<{ message: string; client: Client }>('/clients', data);
-    return response.data.client;
-  },
-
-  updateClient: async (id: number, data: Partial<CreateClientData>): Promise<Client> => {
-    const response = await api.patch<{ message: string; client: Client }>(`/clients/${id}`, data);
-    return response.data.client;
-  },
-
-  toggleClientStatus: async (id: number, isActive: boolean): Promise<Client> => {
-    const response = await api.patch<{ message: string; client: Client }>(
-      `/clients/${id}/toggle-active`,
-      { isActive }
-    );
-    return response.data.client;
-  },
-};
