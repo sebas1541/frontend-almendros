@@ -71,3 +71,5 @@ export abstract class AbstractApiService<PayloadType = unknown, ResponseType = u
     throw error;
   }
 }
+
+export { AbstractApiService }
